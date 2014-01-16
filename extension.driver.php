@@ -25,6 +25,7 @@
                   `field_id` int(11) unsigned NOT NULL,
                   `allow_multiple_selection` enum('yes','no') NOT NULL default 'no',
                   `show_association` enum('yes','no') NOT NULL default 'yes',
+                  `hide_when_prepopulated` enum('yes','no') NOT NULL default 'no',
                   `related_field_id` VARCHAR(255) NOT NULL,
                   `limit` int(4) unsigned NOT NULL default '20',
                   `view` VARCHAR(255) NOT NULL default '',
@@ -127,6 +128,10 @@
 			        ADD `enable_create` INT(1) NOT NULL DEFAULT 1,
 					ADD `enable_edit` INT(1) NOT NULL DEFAULT 1,
 					ADD `enable_delete` INT(1) NOT NULL DEFAULT 1
+				");
+				Symphony::Database()->query("
+				ALTER TABLE `tbl_fields_selectbox_link_plus`
+					ADD `hide_when_prepopulated` ENUM('yes','no') DEFAULT 'no'
 				");
 			}
 		}
